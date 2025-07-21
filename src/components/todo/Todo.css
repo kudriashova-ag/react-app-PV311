@@ -1,0 +1,21 @@
+.todo{
+    width: 30%;
+    margin: 30px auto;
+    padding: 30px;
+    background: #eee;
+}
+
+.task{
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.task button{
+    margin-left: auto;
+    background: red;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer
+}
