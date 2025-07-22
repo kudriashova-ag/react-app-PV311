@@ -1,13 +1,14 @@
-import React from 'react';
+import React from "react";
 
-const TodoItem = () => {
-    return (
-      <div className="task">
-        <input type="checkbox" />
-        <span>Work</span>
-        <button>Delete</button>
-      </div>
-    );
-}
+const TodoItem = ({ task }) => {
+
+  return (
+    <div className="task">
+      <input type="checkbox" defaultChecked={task.done} />
+      <span>{task.title}</span>
+      <button>Delete</button>
+    </div>
+  );
+};
 
 export default TodoItem;

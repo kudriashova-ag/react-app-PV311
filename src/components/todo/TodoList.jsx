@@ -4,18 +4,29 @@ import TodoForm from "./TodoForm";
 import TodoFilter from "./TodoFilter";
 import TodoItem from "./TodoItem";
 
+const todos = [
+  {id: 1, title: "Work", done: true },
+  {id: 2, title: "Gym", done: false },
+  {id: 3, title: "Shop", done: false },
+];
+
+
 const TodoList = () => {
+  const heading = {
+    title: "Todo List",
+    subtitle: "React App"
+  };
+
   return (
     <div className="todo">
-      <h1 style={{ color: "dodgerblue", textAlign: "center" }}>Todo List</h1>
+      <h1 style={{ color: "dodgerblue", textAlign: "center" }}>{heading.title}</h1>
+      <h2>{heading['subtitle']}</h2>
 
       <TodoForm />
       <TodoFilter />
 
       <div>
-        <TodoItem />
-        <TodoItem />
-        <TodoItem />
+        {todos.map((task) => <TodoItem key={task.id} task={task} />) }
       </div>
     </div>
   );
