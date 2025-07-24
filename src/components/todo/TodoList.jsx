@@ -5,9 +5,9 @@ import TodoFilter from "./TodoFilter";
 import TodoItem from "./TodoItem";
 
 const todos = [
-  {id: 1, title: "Work", done: true },
-  {id: 2, title: "Gym", done: false },
-  {id: 3, title: "Shop", done: false },
+  {id: 1, title: "Work", done: true, rating: 0 },
+  {id: 2, title: "Gym", done: false, rating: 5 },
+  {id: 3, title: "Shop", done: false, rating: 3 },
 ];
 
 
