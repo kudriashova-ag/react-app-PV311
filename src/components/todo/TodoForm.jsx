@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const TodoForm = () => {
+const TodoForm = ({ handleAddTask }) => {
   const [title, setTitle] = useState("");
   const [error, setError] = useState(false);
 
@@ -13,7 +13,7 @@ const TodoForm = () => {
       setError("Title must be at least 3 characters");
       return;
     }
-    console.log(title);
+    handleAddTask(title);
     setTitle("");
     setError(false);
   };

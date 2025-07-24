@@ -1,35 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Todo.css";
 import TodoForm from "./TodoForm";
 import TodoFilter from "./TodoFilter";
 import TodoItem from "./TodoItem";
-
-const todos = [
-  {id: 1, title: "Work", done: true, rating: 0 },
-  {id: 2, title: "Gym", done: false, rating: 5 },
-  {id: 3, title: "Shop", done: false, rating: 3 },
-];
-
+import todos, { heading } from "./todoData";
 
 const TodoList = () => {
-  const heading = {
-    title: "Todo List",
-    subtitle: "React App"
+  const [tasks, setTasks] = useState(todos);
+
+  const handleAddTask = (title) => { 
+    setTasks([...tasks, { id: new Date().getTime(), title, done: false, rating: 0 }]);
+  }
+
+  const handleDeleteTask = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
   };
+
+
 
   return (
     <div className="todo">
-      <h1 style={{ color: "dodgerblue", textAlign: "center" }}>{heading.title}</h1>
-      <h2>{heading['subtitle']}</h2>
+      <h1 style={{ color: "dodgerblue", textAlign: "center" }}>
+        {heading.title}
+      </h1>
+      <h2>{heading["subtitle"]}</h2>
 
-      <TodoForm />
+      <TodoForm handleAddTask={handleAddTask} />
       <TodoFilter />
 
       <div>
-        {todos.map((task) => <TodoItem key={task.id} task={task} />) }
+        {tasks.map((task) => (
+          <TodoItem key={task.id} task={task} handleDeleteTask={handleDeleteTask} />
+        ))}
       </div>
     </div>
   );
 };
 
 export default TodoList;
+
+

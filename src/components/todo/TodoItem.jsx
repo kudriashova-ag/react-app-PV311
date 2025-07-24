@@ -1,14 +1,13 @@
 import React from "react";
 import StarRating from "../StarRating/StarRating";
 
-const TodoItem = ({ task }) => {
-
+const TodoItem = ({ task, handleDeleteTask }) => {
   return (
     <div className="task">
       <input type="checkbox" defaultChecked={task.done} />
-      <span>{task.title}</span>
+      {task.done ? <del>{task.title}</del> : <span>{task.title}</span>}
       <StarRating rate={task.rating} />
-      <button>Delete</button>
+      <button onClick={() => handleDeleteTask(task.id)}>Delete</button>
     </div>
   );
 };
