@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 
-const StarRating = ({ rate }) => {
+const StarRating = ({ rate, handleRatingTask, id }) => {
   const [rating, setRating] = useState(rate);
 
   const handleClick = (index) => {
-    setRating(index + 1 === rating ? 0 : index + 1);
+    setRating(index + 1 === rating ? 0 : index + 1); 
+    handleRatingTask(id, index + 1 === rating ? 0 : index + 1);
   };
 
   return (

@@ -7,14 +7,49 @@ import todos, { heading } from "./todoData";
 
 const TodoList = () => {
   const [tasks, setTasks] = useState(todos);
+  const [filter, setFilter] = useState("All");
 
-  const handleAddTask = (title) => { 
-    setTasks([...tasks, { id: new Date().getTime(), title, done: false, rating: 0 }]);
-  }
+  const handleAddTask = (title) => {
+    setTasks([
+      ...tasks,
+      { id: new Date().getTime(), title, done: false, rating: 0 },
+    ]);
+  };
 
   const handleDeleteTask = (id) => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
+
+  const handleToggleTask = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, done: !task.done } : task
+      )
+    );
+  };
+
+  const handleRatingTask = (id, rate) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, rating: rate } : task
+      )
+    );
+  };
+
+
+  const handleChangeTitleTask = (id, title) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, title } : task
+      )
+    );
+  };
+
+  const filtersObject = {
+    All: () => true,
+    Todo: (task) => !task.done,
+    Done: (task) => task.done,
+  }
 
 
 
@@ -26,11 +61,18 @@ const TodoList = () => {
       <h2>{heading["subtitle"]}</h2>
 
       <TodoForm handleAddTask={handleAddTask} />
-      <TodoFilter />
+      <TodoFilter filter={filter} setFilter={setFilter} filtersObject={filtersObject} />
 
       <div>
-        {tasks.map((task) => (
-          <TodoItem key={task.id} task={task} handleDeleteTask={handleDeleteTask} />
+        {tasks.filter(filtersObject[filter]).map((task) => (
+          <TodoItem
+            key={task.id}
+            task={task}
+            handleDeleteTask={handleDeleteTask}
+            handleToggleTask={handleToggleTask}
+            handleRatingTask={handleRatingTask}
+            handleChangeTitleTask={handleChangeTitleTask}
+          />
         ))}
       </div>
     </div>
@@ -38,5 +80,3 @@ const TodoList = () => {
 };
 
 export default TodoList;
-
-

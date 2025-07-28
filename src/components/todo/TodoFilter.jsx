@@ -1,11 +1,13 @@
 import React from 'react';
 
-const TodoFilter = () => {
+const TodoFilter = ({ filter, setFilter, filtersObject }) => {
+  const buttons = Object.keys(filtersObject); // ["Todo", "Done", "All"]
+  
     return (
       <div>
-        <button>Todo</button>
-        <button>Done</button>
-        <button>All</button>
+        {buttons.map((button) => (
+          <button key={button} onClick={() => setFilter(button)} style={ {backgroundColor: filter === button ? "dodgerblue" : "silver"} }>{button}</button>
+        ))}
       </div>
     );
 }
