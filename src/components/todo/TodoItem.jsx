@@ -10,7 +10,8 @@ const TodoItem = ({
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(task.title);
-
+  console.log(task.rating);
+  
   const handleSave = () => { 
     if(newTitle.trim().length === 0) {
       handleDeleteTask(task.id);
