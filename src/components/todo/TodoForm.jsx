@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 const TodoForm = ({ handleAddTask }) => {
+  console.log("TodoForm rendered");
+
   const [title, setTitle] = useState("");
   const [error, setError] = useState(false);
 
@@ -33,4 +35,4 @@ const TodoForm = ({ handleAddTask }) => {
   );
 };
 
-export default TodoForm;
+export default React.memo(TodoForm);

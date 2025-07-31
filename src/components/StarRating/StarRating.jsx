@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 const StarRating = ({ rate, handleRatingTask, id }) => {
+  console.log('StarRating rendered');
+  
   const [rating, setRating] = useState(rate);
 
   const handleClick = (index) => {
@@ -23,4 +25,4 @@ const StarRating = ({ rate, handleRatingTask, id }) => {
   );
 };
 
-export default StarRating;
+export default React.memo(StarRating);

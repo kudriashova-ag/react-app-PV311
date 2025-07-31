@@ -1,10 +1,16 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useCallback, useEffect, useReducer, useState } from "react";
 import "./Todo.css";
 import TodoForm from "./TodoForm";
 import TodoFilter from "./TodoFilter";
 import TodoItem from "./TodoItem";
 import todos, { heading } from "./todoData";
 import todoReducer from "./TodoReducer";
+
+const filtersObject = {
+  All: () => true,
+  Todo: (task) => !task.done,
+  Done: (task) => task.done,
+};
 
 const TodoList = () => {
   const [tasks, dispatch] = useReducer(todoReducer, []);
@@ -26,31 +32,27 @@ const TodoList = () => {
     localStorage.setItem("filter", filter);
    }, [filter]);
 
-  const handleAddTask = (title) => {
+  const handleAddTask = useCallback((title) => {
     dispatch({ type: "addTask", payload: { title } });
-  };
+  },[]);
 
-  const handleDeleteTask = (id) => {
+  const handleDeleteTask = useCallback((id) => {
     dispatch({ type: "removeTask", payload: { id } });
-  };
+  }, []);
 
-  const handleToggleTask = (id) => {
+  const handleToggleTask = useCallback((id) => {
     dispatch({ type: "toggleTask", payload: { id } });
-  };
+  },[]);
 
-  const handleRatingTask = (id, rate) => {
+  const handleRatingTask = useCallback((id, rate) => {
     dispatch({ type: "ratingTask", payload: { id, rating: rate } });
-  };
+  },[]);
 
-  const handleChangeTitleTask = (id, title) => {
+  const handleChangeTitleTask = useCallback((id, title) => {
     dispatch({ type: "changeTitleTask", payload: { id, title } });
-  };
+  }, []);
 
-  const filtersObject = {
-    All: () => true,
-    Todo: (task) => !task.done,
-    Done: (task) => task.done,
-  };
+
 
   return (
     <div className="todo">

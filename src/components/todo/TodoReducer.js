@@ -1,9 +1,9 @@
-const todoReducer = (tasks, action) => { 
+const todoReducer = (tasks, action) => {
     /*
     action.type  - add, remove, toggle
     action.payload - id, title
     */
-    switch (action.type) { 
+    switch (action.type) {
         case 'addTask':
             return [
                 ...tasks,

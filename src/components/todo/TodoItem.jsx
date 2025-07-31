@@ -8,9 +8,10 @@ const TodoItem = ({
   handleRatingTask,
   handleChangeTitleTask,
 }) => {
+  console.log('TodoItem rendered');
+  
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(task.title);
-  console.log(task.rating);
   
   const handleSave = () => { 
     if(newTitle.trim().length === 0) {
@@ -49,4 +50,4 @@ const TodoItem = ({
   );
 };
 
-export default TodoItem;
+export default React.memo(TodoItem);
