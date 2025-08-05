@@ -1,15 +1,13 @@
-import Counters from "./components/Examples/Counters";
-import Example from "./components/Examples/Example";
-import TodoList from "./components/todo/TodoList";
+import { Outlet } from "react-router";
+import Header from "./pages/templates/Header";
 
 function App() {
 
   return (
     <div>
-      {/* <Counters /> */}
-      {/* <Example />
-      <hr /> */}
-      <TodoList />
+      <Header />
+      
+      <Outlet />
     </div>
   );
 }
