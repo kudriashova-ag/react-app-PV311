@@ -1,10 +1,12 @@
-import React, { useCallback, useEffect, useReducer, useState } from "react";
+import React, { useCallback, useContext, useEffect, useReducer, useState } from "react";
 import "./Todo.css";
 import TodoForm from "./TodoForm";
 import TodoFilter from "./TodoFilter";
 import TodoItem from "./TodoItem";
 import todos, { heading } from "./todoData";
 import todoReducer from "./TodoReducer";
+import ThemeContext from "../../contexts/ThemeContext";
+import LanguageContext from "../../contexts/LanguageContext";
 
 const filtersObject = {
   All: () => true,
@@ -15,6 +17,8 @@ const filtersObject = {
 const TodoList = () => {
   const [tasks, dispatch] = useReducer(todoReducer, []);
   const [filter, setFilter] = useState("All");
+  const { theme } = useContext(ThemeContext);
+  const { t } = useContext(LanguageContext);
 
   useEffect(() => {
     const storedTasks = localStorage.getItem("tasks");
@@ -56,8 +60,8 @@ const TodoList = () => {
 
   return (
     <div className="todo">
-      <h1 style={{ color: "dodgerblue", textAlign: "center" }}>
-        {heading.title}
+      <h1 style={{ color: theme === "light" ? "dodgerblue" : "red", textAlign: "center" }}>
+        { t("todolist") }
       </h1>
       <h2>{heading["subtitle"]}</h2>
 

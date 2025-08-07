@@ -5,6 +5,10 @@
     background: #eee;
 }
 
+body.dark .todo{
+    background: #333;
+}
+
 .task{
     display: flex;
     gap: 10px;

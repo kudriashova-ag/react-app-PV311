@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import LanguageContext from "../../contexts/LanguageContext";
 
 const TodoForm = ({ handleAddTask }) => {
-  console.log("TodoForm rendered");
-
   const [title, setTitle] = useState("");
   const [error, setError] = useState(false);
+  const { t } = useContext(LanguageContext);
 
   const clickHandler = () => {
     if (title.length === 0) {
@@ -24,7 +24,7 @@ const TodoForm = ({ handleAddTask }) => {
     <div>
       <input
         type="text"
-        placeholder="Add Task"
+        placeholder={t("addtask")}
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && clickHandler()}

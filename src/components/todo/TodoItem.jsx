@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import StarRating from "../StarRating/StarRating";
+import LanguageContext from "../../contexts/LanguageContext";
 
 const TodoItem = ({
   task,
@@ -8,10 +9,10 @@ const TodoItem = ({
   handleRatingTask,
   handleChangeTitleTask,
 }) => {
-  console.log('TodoItem rendered');
-  
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(task.title);
+  const { t } = useContext(LanguageContext);
+
   
   const handleSave = () => { 
     if(newTitle.trim().length === 0) {
@@ -39,13 +40,15 @@ const TodoItem = ({
         defaultChecked={task.done}
         onClick={() => handleToggleTask(task.id)}
       />
-      <div onClick={() => setIsEditing(true)}>{task.done ? <del>{task.title}</del> : <span>{task.title}</span>}</div>
+      <div onClick={() => setIsEditing(true)}>
+        {task.done ? <del>{task.title}</del> : <span>{task.title}</span>}
+      </div>
       <StarRating
         rate={task.rating}
         handleRatingTask={handleRatingTask}
         id={task.id}
       />
-      <button onClick={() => handleDeleteTask(task.id)}>Delete</button>
+      <button onClick={() => handleDeleteTask(task.id)}>{t("delete")}</button>
     </div>
   );
 };
