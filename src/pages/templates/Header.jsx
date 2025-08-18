@@ -14,6 +14,7 @@ const Header = () => {
       <nav>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/todo">Todo</NavLink>
+        <NavLink to="/users">Users</NavLink>
         <NavLink to="/about">About</NavLink>
       </nav>
 
@@ -23,10 +24,22 @@ const Header = () => {
         </div>
 
         <div className="lang">
-          <span style={{ opacity: lang === "ua" ? 1 : 0.5 }} onClick={() => setLang("ua")}>UA</span> |
-          <span style={{ opacity: lang === "en" ? 1 : 0.5 }} onClick={() => setLang("en")}>EN</span>
+          <span
+            style={{ opacity: lang === "ua" ? 1 : 0.5 }}
+            onClick={() => setLang("ua")}
+          >
+            UA
+          </span>{" "}
+          |
+          <span
+            style={{ opacity: lang === "en" ? 1 : 0.5 }}
+            onClick={() => setLang("en")}
+          >
+            EN
+          </span>
         </div>
 
+        <NavLink to="/register">Sign Up</NavLink>
       </div>
     </header>
   );

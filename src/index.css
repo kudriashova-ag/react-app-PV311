@@ -11,3 +11,27 @@ body.dark {
   background-color: #000;
   color: #fff;
 }
+
+
+.invalid{
+  color: red;
+  font-size: .9em;
+}
+
+.password{
+  position: relative;
+  display: inline-block;
+}
+
+.password input{
+  margin: 0;
+  padding: 10px;
+}
+
+.password div{
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
